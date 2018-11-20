@@ -1,0 +1,59 @@
+header {
+    
+    background: url("http://images.clipartpanda.com/library-clipart-14002036-clipart-of-wooden-bookshelf-with-books--Stock-Vector-library.jpg");
+}
+
+
+h1 {
+    
+    color: ivory;
+    font-family: BlinkMacSystemFont;
+   
+    font-weight: Bold;
+    font-size: 50px;
+    width: 250px;
+    height: 70px;
+    padding: 2rem;
+    text-align: center;
+    
+    
+}
+
+h2 {
+
+    color: ivory;
+    font-family: Arial;
+    font-style: italic;
+    padding-top: 0;
+    padding-left: 2rem;
+    padding-bottom: 2rem;
+    
+
+}
+
+body {
+
+    background-color: bisque;
+    margin: 2rem;
+    padding: 2 rem;
+
+}
+
+.main {
+
+    padding: 2rem;
+    border-color: darkred;
+    border-width: 1px;
+    border-style: solid;
+
+}
+
+.tagline {
+
+    font-weigth: Bold;
+    color: maroon;
+    font-family: Fantasy;
+    font-size: 25px;
+
+
+}

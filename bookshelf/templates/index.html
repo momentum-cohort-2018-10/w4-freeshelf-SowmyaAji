@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+<!doctype html>
+<html>
+% load humanize %}
+{% load staticfiles %}
+
+{% block title %}
+
+    Homepage - {{ block.super }}
+
+{% endblock title %}
+
+{% block content %}
+
+    
+    {% for book in books %}
+   
+    <h2><a href="{% url 'book_detail' slug=book.slug %}">
+        {{ book.name }}
+
+        </a></h2>
+    <p>{{ book.author }}
+    <p>{{ book.description }}</p>
+    <p>{{ book.category }}
+    {% if book.picture.url %}
+        <img  src="{{ book.picture.url }}">
+    {% endif %}
+
+     {% endfor %}
+
+{% endblock content %}  
+
+</html>

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}
+
+    Homepage - {{ block.super }}
+
+{% endblock title %}
+
+{% block content %}
+
+    
+    
+   
+    <h1>{{ book.name }}</h1>
+    <h2>{{ book.author }}</h2>
+    <h3>{{ book.category}}</h3>
+
+    <p>{{ book.description }}</p>
+    {% if book.picture.url %}
+        <img  src="{{ book.picture.url }}">
+    {% endif %}
+    
+    {% if user == book.user %} <p>
+
+
+
+    <a href="{% url 'comment_book' slug=book.slug %}"> Your comments:
+    </a>
+
+    {% endif %}
+    
+   
+     {% comment %} {% endfor %} {% endcomment %}
+
+{% endblock content %}  

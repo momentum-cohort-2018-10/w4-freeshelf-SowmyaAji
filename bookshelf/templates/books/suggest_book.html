@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+ {% block title %}
+    
+    Suggest a Book - {{ block.super }}
+    
+{% endblock title %}
+
+{% block content %}
+
+    <h1>Suggest a Book</h1>
+
+    <form role="form" action="" method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+    
+        <button type="submit">Submit</button>
+    </form>
+
+{% endblock content %}
