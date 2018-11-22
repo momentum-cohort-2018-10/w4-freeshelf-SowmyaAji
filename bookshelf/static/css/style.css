@@ -33,9 +33,10 @@ h2 {
 
 body {
 
-    background-color: bisque;
+    background-color: rgb(250, 232, 209);
     margin: 2rem;
-    padding: 2 rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
 
 }
 
@@ -47,14 +48,35 @@ body {
     border-style: solid;
 
 }
+.text {
 
+    font-family: cursive;
+    color: rgb(73, 22, 174);
+
+}
 .tagline {
 
     font-weight: Bold;
-    color: maroon;
+    color: teal;
     font-family: Fantasy;
     font-size: 25px;
 
 
 }
 
+.heading{
+    
+    color: rgb(225, 225, 216);
+    font-family: 'Arial Narrow Bold';
+    font-style: normal;
+    font-size: 25px;
+    
+    padding-top: 1.5rem;
+
+
+}
+.recent {
+    color: maroon;
+    font-size: 30px;
+
+}

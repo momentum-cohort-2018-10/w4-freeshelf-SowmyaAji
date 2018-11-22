@@ -27,16 +27,17 @@
         <p>Do comment on the usefulness of the books on their invidivual pages and if you don't like them, please do ensure the criticism is constructive. And don't forget to mark your favorites!</p>
 
   </div>
+        <p class="recent">Most recent books</p>
 
     {% for book in books %}
    
-    <h2><a href="{% url 'book_detail' slug=book.slug %}">
+    <p class="heading"><a href="{% url 'book_detail' slug=book.slug %}">
         {{ book.name }}
 
-        </a></h2>
+        </a></p>
     <h3>{{ book.author }} </h3>
    
-    <p>{{ book.description }}</p>
+    <p class="text">{{ book.description }}</p>
    
     <p>{{ book.category }}</p>
     <a href="{{ book.url }}">Link to the book online</a>

@@ -30,7 +30,7 @@ urlpatterns = [
 
     path('', views.index, name="home"),
 
-    path('books/', RedirectView.as_view(pattern_name='browse', permanent=True)),
+    # path('books/', RedirectView.as_view(pattern_name='browse', permanent=True)),
     path('books/<slug>/', views.book_detail, name='book_detail'),
     # path('books/<slug>/edit/', views.edit_book, name='edit_book'),
     path('browse/', RedirectView.as_view(pattern_name='browse', permanent=True)),
