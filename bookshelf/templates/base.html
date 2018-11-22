@@ -22,55 +22,30 @@
                     <h2>Free Books Of Fiction Online</h2> 
         </header>
 
-{% endblock header %}
-
-{% block content %}  
-    <div class="main">
     
-        
-        <p class="tagline">Welcome to our online library of free programming books!</p>
-        
-        <p class="thanks"> We thank the authors for providing these book resources for free, on behalf of all our readers</p> 
-         
-        <p>Browse through the books we've listed. You can search by alphabet, name or author, as you please!</p>
-        <a href="{% url 'browse' %}"> <p>Browse </a>
-        <p>Do comment on the usefulness of the books on their invidivual pages and if you don't like them, please do ensure the criticism is constructive. And don't forget to mark your favorites!</p>
-        <p>You can also suggest cool online books to be shared with all our readers    here: (link to suggestions page)</p>
-
-       
-        
-    <div>
-
-
-
-            <nav>
+             <nav>
                 <ul>
                     <li><a href="{% url 'home' %}">Home</a></li> 
-                    <li><a href="{% url 'about' %}">About</a></li>
-                    <li><a href="{% url 'contact' %}">Contact</a></li>
                     
-                    
-                    {% if user.is_authenticated %}
-                     <li>
-                        <a href="{% url 'auth_logout' %}">Logout</a></li>
-                    {% else %}
-                    <li>
-                        <a href="{% url 'auth_login' %}">Login</a> </li>
-                    <li>
-                        <a href="{% url 'registration_register' %}">Register</a></li>
-                    {% endif %}
-                  
+
+                    <p>(link to suggestions page)</p>
+
                 
+             
                 
-                
-                
-                </ul> 
             </nav>
+  
+       
     
-    
-   
-    
+
+
+{% endblock header %}
+
+{% block content %}
 {% endblock content %}
+
+
+  
     
     {% block footer %}
     

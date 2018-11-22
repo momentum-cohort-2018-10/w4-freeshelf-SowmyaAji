@@ -1,8 +1,9 @@
+
 {% extends 'base.html' %}
 
 <!doctype html>
 <html>
-% load humanize %}
+
 {% load staticfiles %}
 
 {% block title %}
@@ -10,21 +11,40 @@
     Homepage - {{ block.super }}
 
 {% endblock title %}
-
 {% block content %}
 
+
+
+  <div class="main">
     
+        
+        <p class="tagline">Welcome to our online library of free fiction books!</p>
+        
+        <p class="thanks"> We thank the authors for providing these book resources for free, on behalf of all our readers</p> 
+         
+        <p>Browse through the books we've listed. You can search by alphabet, name or author, as you please!</p>
+        {% comment %} <a href="{% url 'browse' %}"> <p>Browse </a> {% endcomment %}
+        <p>Do comment on the usefulness of the books on their invidivual pages and if you don't like them, please do ensure the criticism is constructive. And don't forget to mark your favorites!</p>
+
+  </div>
+
     {% for book in books %}
    
     <h2><a href="{% url 'book_detail' slug=book.slug %}">
         {{ book.name }}
 
         </a></h2>
-    <p>{{ book.author }}
+    <h3>{{ book.author }} </h3>
+   
     <p>{{ book.description }}</p>
-    <p>{{ book.category }}
+   
+    <p>{{ book.category }}</p>
+    <a href="{{ book.url }}">Link to the book online</a>
+    
+   
+
     {% if book.picture.url %}
-        <img  src="{{ book.picture.url }}">
+        <img  src="{{ book.picture.url }}" hspace='40' vspace='40' width='250px' height='350px'/>
     {% endif %}
 
      {% endfor %}

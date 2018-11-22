@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, RedirectView
 from bookshelf import views
 from django.contrib.auth.views import (PasswordChangeView,
                                        PasswordChangeDoneView,                      PasswordResetView,
@@ -29,7 +29,17 @@ from django.conf import settings
 urlpatterns = [
 
     path('', views.index, name="home"),
-    path('admin/', admin.site.urls),
+
+    path('books/', RedirectView.as_view(pattern_name='browse', permanent=True)),
+    path('books/<slug>/', views.book_detail, name='book_detail'),
+    # path('books/<slug>/edit/', views.edit_book, name='edit_book'),
+    path('browse/', RedirectView.as_view(pattern_name='browse', permanent=True)),
+
+    path('browse/name/', views.browse_by_name, name='browse'),
+    path('browse/name/<initial>/', views.browse_by_name, name='browse_by_name'),
 
     path('accounts/', include('django.contrib.auth.urls')),
+    path('admin/', admin.site.urls),
+
+
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
