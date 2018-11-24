@@ -16,9 +16,10 @@ from django.contrib.auth.decorators import login_required
 def index(request):
 
     books = Book.objects.order_by('-date')
-    return render(request, 'index.html', {
-        'books': books,
 
+    return render(request, 'index.html', {
+
+        'books': books,
     })
 
 

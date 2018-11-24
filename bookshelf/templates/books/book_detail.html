@@ -11,7 +11,7 @@
 {% block content %}
 
    
-    <h1>{{ book.name }}</h1>
+    <p class="heading">{{ book.name }}</p>
     <h2>{{ book.author }}</h2>
     <h3>{{ book.category }}</h3>
     <p>{{ book.description }}</p>
@@ -20,15 +20,15 @@
         <img  src="{{ book.picture.url }}" alt="{{ book.name }}" "{{ book.description }}">
     {% endif %}
     
-    {% if user == book.user %} <p>
+    {% comment %} {% if user == book.user %} <p> {% endcomment %}
 
 
     <a href="{% url 'comment_book' slug=book.slug %}"> Your comments:
     </a>
 
-    {% endif %}
-    
+    {% comment %} {% endif %}
+     {% endcomment %}
    
-     {% comment %} {% endfor %} {% endcomment %}
+     
 
 {% endblock content %}  
