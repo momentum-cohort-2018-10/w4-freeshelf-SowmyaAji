@@ -33,6 +33,7 @@ urlpatterns = [
     # path('books/', RedirectView.as_view(pattern_name='browse', permanent=True)),
     path('books/<slug>/', views.book_detail, name='book_detail'),
     path('books/<slug>/comment/', views.comment_book, name='comment_book'),
+    path('categories/<slug>/', views.category_more, name='category_more'),
     path('browse/', RedirectView.as_view(pattern_name='browse', permanent=True)),
 
     path('browse/name/', views.browse_by_name, name='browse'),

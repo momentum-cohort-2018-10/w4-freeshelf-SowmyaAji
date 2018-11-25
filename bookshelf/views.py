@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from bookshelf.forms import BookForm
 
-from bookshelf.models import Book
+from bookshelf.models import Book, Category
 
 
 from django.conf import settings
@@ -20,6 +20,8 @@ def index(request):
     return render(request, 'index.html', {
 
         'books': books,
+        'categories': Category.objects.all(),
+
     })
 
 
@@ -29,6 +31,15 @@ def book_detail(request, slug):
 
     return render(request, 'books/book_detail.html', {
         'book': book,
+    })
+
+
+def category_more(request, slug):
+
+    category = Category.objects.get(slug=slug)
+    return render(request, 'categories/category_more.html', {
+        'category': category,
+        'books': Book.objects.filter(categories__slug=category.slug)
     })
 
 

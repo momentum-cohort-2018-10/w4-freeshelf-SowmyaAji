@@ -11,6 +11,7 @@
     Homepage - {{ block.super }}
 
 {% endblock title %}
+
 {% block content %}
 
 
@@ -22,11 +23,21 @@
         
         <p class="thanks"> We thank the authors for providing these book resources for free, on behalf of all our readers</p> 
          
-        <p>Browse through the books we've listed. You can search by alphabet, name or author, as you please!</p>
+        <p>Browse through the books we've listed. You can search by categories, alphabet, book name or author, as you please!</p>
         {% comment %} <a href="{% url 'browse' %}"> <p>Browse </a> {% endcomment %}
         <p>Do comment on the usefulness of the books on their invidivual pages and if you don't like them, please do ensure the criticism is constructive. And don't forget to mark your favorites!</p>
 
   </div>
+
+    {% for category in categories %}
+     <p><a href="{% url 'category_more' slug=category.slug %}">
+            {{ category.title }}
+            
+        </a> </p>
+
+    {% endfor %}
+
+
         <p class="recent">Most recent books</p>
 
     {% for book in books %}

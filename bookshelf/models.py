@@ -11,7 +11,12 @@ from django.template.defaultfilters import slugify
 class Category(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
-    #book = models.ForeignKey(to="Book", on_delete=models.CASCADE)
+
+    def save(self):
+
+        if not self.id:
+            self.slug = slugify(self.title)
+        super(Category, self).save()
 
 
 class Book(models.Model):
