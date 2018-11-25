@@ -43,7 +43,7 @@ def category_more(request, slug):
     })
 
 
-@login_required
+# @login_required
 def comment_book(request, slug):
 
     book = Book.objects.get(slug=slug)

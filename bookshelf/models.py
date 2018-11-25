@@ -4,7 +4,7 @@ from django.db import models
 from datetime import date
 from django.core.files import File
 from django.template.defaultfilters import slugify
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -29,8 +29,8 @@ class Book(models.Model):
     date = models.DateField(auto_now=False, auto_now_add=False)
     slug = models.SlugField(unique=True)
     picture = models.ImageField(upload_to='books/', blank=True)
-    user = models.OneToOneField(
-        User, on_delete=models.CASCADE, blank=True, null=True)
+    # user = models.OneToOneField(
+    #     User, on_delete=models.CASCADE, blank=True, null=True)
 
     def save(self):
 
