@@ -6,10 +6,10 @@
 {% endblock title %}
        
 {% block content %}
-    <h1>
+    <p class="heading">
     Browse Books {% if initial %} Starting with '{{ initial|title }}'
 
-    {% endif %} </h1>
+    {% endif %} </p>
 
     {% for letter in 'abcdefghijklmnopqrstuvwxyz' %}
      <a href="{% url 'browse_by_name' initial=letter %}"
@@ -30,17 +30,26 @@
      {% endfor %}
 
 </ul>
-    {% comment %} <h1>Browse Author{% if initial %} Starting with '{{ initial|title }}'
+   {% comment %} <p class="heading">Browse Author{% if initial %} Starting with '{{ initial|title }}'
 
-    {% endif %} </h1>
+    {% endif %} </p>
 
     {% for letter in 'abcdefghijklmnopqrstuvwxyz' %}
      <a href="{% url 'browse_by_author' initial=letter %}"
         {% if initial == letter %}class="active"{% endif %}>
             {{ letter|upper }} </a>
-    
-    {% endfor %} {% endcomment %}
 
+            {% for book.author in books %}
+
+        <li><a href="{% url 'book_detail'  %}">
+                   
+                   {{ book.author }}
+               </a></li>
+    {% empty %}
+
+        <li>Sorry, no results!</li> {% endcomment %}
+     
+    
 
 
 {% endblock content %}

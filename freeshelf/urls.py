@@ -37,6 +37,9 @@ urlpatterns = [
 
     path('browse/name/', views.browse_by_name, name='browse'),
     path('browse/name/<initial>/', views.browse_by_name, name='browse_by_name'),
+    # path('browse/author/', views.browse_by_author, name='browse_author'),
+    # path('browse/author/<initial>/',
+    #      views.browse_by_author, name='browse_by_author'),
     path('accounts/password/change/', PasswordChangeView.as_view(
         template_name='registration/password_change_form.html'), name="password_change"),
     path('accounts/password/change/done/', PasswordChangeDoneView.as_view(

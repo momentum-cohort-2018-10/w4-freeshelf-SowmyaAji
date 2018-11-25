@@ -100,10 +100,11 @@ def browse_by_name(request, initial=None):
 
     })
 
+
 # def browse_by_author(request, initial=None):
 #     if initial:
 #         authors = Book.objects.filter(
-#             book.author__istartswith=initial).order_by('book.author')
+#             author__istartswith=initial).order_by('book.author')
 #     else:
 #         authors = Book.objects.all().order_by('')
 
