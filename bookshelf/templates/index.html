@@ -13,6 +13,8 @@
 {% endblock title %}
 
 {% block content %}
+    
+    
 
 
 
@@ -27,27 +29,30 @@
         {% comment %} <a href="{% url 'browse' %}"> <p>Browse </a> {% endcomment %}
         <p>Do comment on the usefulness of the books on their invidivual pages and if you don't like them, please do ensure the criticism is constructive. And don't forget to mark your favorites!</p>
 
-  </div>
-
-    {% for category in categories %}
-     <p><a href="{% url 'category_more' slug=category.slug %}">
-            {{ category.title }}
-            
-        </a> </p>
-
-    {% endfor %}
+    </div>
 
 
         <p class="recent">Most recent books</p>
+        <div class="cats">
+                
+            
+                    
+                    {% for category in categories %}
+                <a href="{% url 'category_more' slug=category.slug %}"> 
+                            {{ category.title }}</a>
 
-    {% for book in books %}
+                    
+
+                    {% endfor %}
+            </div>
+      {% for book in books %}
    
     <p class="heading"><a href="{% url 'book_detail' slug=book.slug %}">
         {{ book.name }}
 
         </a></p>
     <h3>{{ book.author }} </h3>
-   
+ 
     <p class="text">{{ book.description }}</p>
    
     <p>{{ book.category }}</p>

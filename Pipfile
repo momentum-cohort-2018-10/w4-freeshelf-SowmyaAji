@@ -8,6 +8,7 @@ django = "*"
 django-extensions = "*"
 werkzeug = "*"
 pillow = "*"
+django-registration-redux = "==2.0"
 
 [dev-packages]
 pylint = "*"

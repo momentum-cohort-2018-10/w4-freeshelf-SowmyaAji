@@ -24,8 +24,7 @@ from django.contrib.auth.views import (PasswordChangeView,
 
 from django.conf.urls.static import static
 from django.conf import settings
-# from bookshelf.backends import MyRegistrationView
-
+from bookshelf.backends import MyRegistrationView
 urlpatterns = [
 
     path('', views.index, name="home"),
@@ -38,6 +37,27 @@ urlpatterns = [
 
     path('browse/name/', views.browse_by_name, name='browse'),
     path('browse/name/<initial>/', views.browse_by_name, name='browse_by_name'),
+    path('accounts/password/change/', PasswordChangeView.as_view(
+        template_name='registration/password_change_form.html'), name="password_change"),
+    path('accounts/password/change/done/', PasswordChangeDoneView.as_view(
+        template_name='registration/password_change_done.html'), name="password_change_done"),
+    path('accounts/password/reset/', PasswordResetView.as_view(
+        template_name='registration/password_reset_form.html'), name="password_reset"),
+
+    path('accounts/password/reset/done/', PasswordResetDoneView.as_view(
+         template_name='registration/password_reset_done.html'), name="password_reset_done"),
+    path('accounts/password/reset/<uidb64>/<token>/', PasswordResetConfirmView.as_view(
+         template_name='registration/password_reset_confirm.html'), name="password_reset_confirm"),
+    path('accounts/password/done/', PasswordResetCompleteView.as_view(
+         template_name='registration/password_reset_complete.html'),
+         name="password_reset_complete"),
+
+
+    path('accounts/register/', MyRegistrationView.as_view(),
+         name='registration_register'),
+    # path('accounts/create_book/', views.create_book,
+    #      name='registration_create_book'),
+    path('accounts/', include('registration.backends.simple.urls')),
 
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),

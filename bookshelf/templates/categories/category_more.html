@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}
+
+    Homepage - {{ block.super }}
+
+{% endblock title %}
+
+{% block content %}
+
+   
+   
+    <p class="heading">{{ category.title }}</p>
+   {% for book in books %}
+        <p class="heading"><a href="{% url 'book_detail' slug=book.slug %}">
+        {{ book.name }}
+
+        </a></p>
+        <h3>{{ book.author }} </h3>
+ 
+        <p class="text">{{ book.description }}</p>
+   
+    
+        <a href="{{ book.url }}">Link to the book online</a>
+    
+   
+
+        {% if book.picture.url %}
+            <img  src="{{ book.picture.url }}" hspace='40' vspace='40' width='250px' height='350px'/>
+    
+        {% endif %} 
+    {% endfor %}
+ 
+
+{% endblock content %}  

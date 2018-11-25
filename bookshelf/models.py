@@ -5,6 +5,7 @@ from datetime import date
 from django.core.files import File
 from django.template.defaultfilters import slugify
 
+
 # Create your models here.
 
 
@@ -39,8 +40,3 @@ class Book(models.Model):
 class BookForm(models.Model):
 
     comment = models.CharField(max_length=255, blank=True)
-
-
-class CustomUserCreationForm(UserCreationForm):
-    class Meta(UserCreationForm.Meta):
-        model = get_user_model()
