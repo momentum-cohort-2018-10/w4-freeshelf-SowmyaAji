@@ -11,7 +11,13 @@
 
 {% block content %}
 
-    <p>Your comment on:"{{ book.name }}"<p>
+    <p>Your comment<p>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Send</button>
+    </form>
+{% endblock %}
+    {% comment %} <p>Your comment on:"{{ book.name }}"<p>
 
 
     <form role="form" action="" method="post">
@@ -23,8 +29,8 @@
         <button type="submit">Submit</button>
     
     
-    </form>
+    </form> {% endcomment %}
         
  
 
-{% endblock %}
+

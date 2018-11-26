@@ -19,16 +19,32 @@
     {% if book.picture.url %}
         <img  src="{{ book.picture.url }}" alt="{{ book.name }}" "{{ book.description }}">
     {% endif %}
-    
+
+    <hr>
+        <a class="btn btn-default" href="{% url 'add_comment_on_book' slug=book.slug %}">Add comment</a>
+        {% for comment in book.comments.all %}
+        <div class="comment">
+            
+            <strong>{{ comment.author }}</strong>
+        <p>{{ comment.text|linebreaks }}</p>
+        </div>
+
+    {% empty %}
+        
+        <p>No comments here yet :(</p>
+        {% endfor %} 
     {% comment %} {% if user == book.user %} <p> {% endcomment %}
 
-
+{% comment %} 
     <a href="{% url 'comment_book' slug=book.slug %}"> Your comments:
-    </a>
+    </a> {% endcomment %}
 
     {% comment %} {% endif %}
      {% endcomment %}
    
-     
+    {% comment %} <div data-id="{{ like_obj.id }}" data-type="book" data-action="bookmark" title="Favorites">
+        <span class="glyphicon glyphicon-star"></span>
+        <span data-count="bookmark">{{ like_obj.get_bookmark_count }}</span>
+    </div> {% endcomment %}
 
 {% endblock content %}  

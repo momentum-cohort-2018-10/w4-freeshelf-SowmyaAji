@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.contrib import admin
 
 # Register your models here.
-from bookshelf.models import Book, Category
+from bookshelf.models import Book, Category, Comment
 
 
 class BookAdmin(admin.ModelAdmin):
@@ -16,3 +16,4 @@ class BookAdmin(admin.ModelAdmin):
 
 admin.site.register(Book, BookAdmin)
 admin.site.register(Category)
+admin.site.register(Comment)

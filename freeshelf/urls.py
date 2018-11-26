@@ -25,13 +25,17 @@ from django.contrib.auth.views import (PasswordChangeView,
 from django.conf.urls.static import static
 from django.conf import settings
 from bookshelf.backends import MyRegistrationView
+from django.conf.urls import url
+from django.contrib.auth.decorators import login_required
+
 urlpatterns = [
 
     path('', views.index, name="home"),
 
     # path('books/', RedirectView.as_view(pattern_name='browse', permanent=True)),
     path('books/<slug>/', views.book_detail, name='book_detail'),
-    path('books/<slug>/comment/', views.comment_book, name='comment_book'),
+    path('books/<slug>/comment/', views.add_comment_on_book,
+         name='add_comment_on_book'),
     path('categories/<slug>/', views.category_more, name='category_more'),
     path('browse/', RedirectView.as_view(pattern_name='browse', permanent=True)),
 
@@ -61,7 +65,8 @@ urlpatterns = [
     # path('accounts/create_book/', views.create_book,
     #      name='registration_create_book'),
     path('accounts/', include('registration.backends.simple.urls')),
-
+    # url(r'^book/(?P<pk>\d+)/comment/$',
+    #     views.add_comment_on_book, name='add_comment_on_book'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
 

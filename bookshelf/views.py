@@ -1,5 +1,7 @@
+
 from django.shortcuts import render, redirect
-from bookshelf.forms import BookForm
+from django.shortcuts import get_object_or_404
+from bookshelf.forms import BookForm, CommentForm
 
 from bookshelf.models import Book, Category
 
@@ -9,8 +11,6 @@ from django.conf.urls.static import static
 from django.core.files import File
 from django.template.defaultfilters import slugify
 from django.contrib.auth.decorators import login_required
-
-# Create your views here.
 
 
 def index(request):
@@ -43,25 +43,55 @@ def category_more(request, slug):
     })
 
 
-# @login_required
-def comment_book(request, slug):
-
-    book = Book.objects.get(slug=slug)
-    if request.method == 'POST':
-
-        form = BookForm(data=request.POST)
-
-        form.save()
-
-        return redirect('book_detail', slug=book.slug)
-
+def browse_by_name(request, initial=None):
+    if initial:
+        books = Book.objects.filter(
+            name__istartswith=initial).order_by('name')
     else:
-        form = BookForm(instance=book)
+        books = Book.objects.all().order_by('name')
 
-    return render(request, 'books/comment_book.html', {
-        'book': book,
-        'form': form,
+    return render(request, 'search/search.html', {
+        'books': books,
+        'initial': initial,
+
     })
+
+
+def add_comment_on_book(request, slug):
+    book = get_object_or_404(Book, slug=slug)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.book = book
+            comment.save()
+            return redirect('book_detail', slug=book.slug)
+    else:
+        form = CommentForm()
+    return render(request, 'books/add_comment_on_book.html', {'form': form})
+
+
+# @login_required
+
+
+# def comment_book(request, slug):
+
+#     book = Book.objects.get(slug=slug)
+#     if request.method == 'POST':
+
+#         form = BookForm(data=request.POST)
+
+#         form.save()
+
+#         return redirect('book_detail', slug=book.slug)
+
+#     else:
+#         form = BookForm(instance=book)
+
+#     return render(request, , {
+#         'book': book,
+#         'form': form,
+#     })
 
 
 def suggest_book(request):
@@ -84,20 +114,6 @@ def suggest_book(request):
     return render(request, 'books/create_book.html', {
         # 'book': book,
         'form': form,
-    })
-
-
-def browse_by_name(request, initial=None):
-    if initial:
-        books = Book.objects.filter(
-            name__istartswith=initial).order_by('name')
-    else:
-        books = Book.objects.all().order_by('name')
-
-    return render(request, 'search/search.html', {
-        'books': books,
-        'initial': initial,
-
     })
 
 
