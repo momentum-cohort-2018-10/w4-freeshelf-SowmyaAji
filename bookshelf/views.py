@@ -111,7 +111,7 @@ def suggest_book(request):
     else:
         form = BookForm()
 
-    return render(request, 'books/create_book.html', {
+    return render(request, 'books/suggest_book.html', {
         # 'book': book,
         'form': form,
     })
