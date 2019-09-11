@@ -60,10 +60,7 @@ urlpatterns = [
          name="password_reset_complete"),
 
 
-    path('accounts/register/', MyRegistrationView.as_view(),
-         name='registration_register'),
-    # path('accounts/create_book/', views.create_book,
-    #      name='registration_create_book'),
+ 
     path('accounts/', include('registration.backends.simple.urls')),
     # url(r'^book/(?P<pk>\d+)/comment/$',
     #     views.add_comment_on_book, name='add_comment_on_book'),
