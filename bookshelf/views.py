@@ -56,7 +56,7 @@ def browse_by_name(request, initial=None):
 
     })
 
-
+@login_required
 def add_comment_on_book(request, slug):
     book = get_object_or_404(Book, slug=slug)
     if request.method == "POST":
@@ -71,60 +71,3 @@ def add_comment_on_book(request, slug):
     return render(request, 'books/add_comment_on_book.html', {'form': form})
 
 
-# @login_required
-
-
-# def comment_book(request, slug):
-
-#     book = Book.objects.get(slug=slug)
-#     if request.method == 'POST':
-
-#         form = BookForm(data=request.POST)
-
-#         form.save()
-
-#         return redirect('book_detail', slug=book.slug)
-
-#     else:
-#         form = BookForm(instance=book)
-
-#     return render(request, , {
-#         'book': book,
-#         'form': form,
-#     })
-
-
-def suggest_book(request):
-
-    if request.method == 'POST':
-
-        form = BookForm(data=request.POST)
-
-        book = form.save(commit=False)
-        book.user = request.user
-        book.slug = slugify(book.name)
-
-        book.save()
-
-        return redirect('book_detail', slug=book.slug)
-
-    else:
-        form = BookForm()
-
-    return render(request, 'books/suggest_book.html', {
-        # 'book': book,
-        'form': form,
-    })
-
-
-# def browse_by_author(request, initial=None):
-#     if initial:
-#         authors = Book.objects.filter(
-#             author__istartswith=initial).order_by('book.author')
-#     else:
-#         authors = Book.objects.all().order_by('')
-
-#     return render(request, 'search/search.html', {
-#         'authors': book.authors,
-#         'initial': initial,
-#     })
